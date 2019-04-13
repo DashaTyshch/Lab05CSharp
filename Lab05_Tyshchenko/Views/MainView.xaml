@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Lab05_Tyshchenko.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="DarkSlateBlue"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="BlueViolet" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True">
+        <Label DockPanel.Dock="Top" Content="Диспетчер завдань"/>
+        <DataGrid ItemsSource="{Binding Processes}" IsReadOnly="True"
+                  IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedProcess, Mode=TwoWay}"
+                      AutoGenerateColumns="False" FrozenColumnCount="1">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Активний" Binding="{Binding IsActive, Mode=OneWay}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="% ЦП" Binding="{Binding CPU}"></DataGridTextColumn>
+                <DataGridTextColumn Header="% Пам'ять" Binding="{Binding Memory}"></DataGridTextColumn>
+                <DataGridTextColumn Header="К-ть потоків" Binding="{Binding ThreadsCount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Користувач" Binding="{Binding User}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Розташування" Binding="{Binding Folder}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата та час запуску" Binding="{Binding LaunchDateTime}"></DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <MenuItem Command="{Binding ModulesShow}" Header="Модулі"/>
+                    <MenuItem Command="{Binding ThreadsShow}" Header="Потоки"/>
+                    <MenuItem Command="{Binding Terminate}" Header="Зупинити"/>
+                    <MenuItem Command="{Binding OpenFolder}" Header="Відкрити розташування файлу"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
