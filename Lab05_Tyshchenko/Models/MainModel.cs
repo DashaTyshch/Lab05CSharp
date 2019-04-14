@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Lab05_Tyshchenko.Windows;
+using System;
+using System.Diagnostics;
 
 namespace Lab05_Tyshchenko.Models
 {
@@ -12,6 +14,12 @@ namespace Lab05_Tyshchenko.Models
         public void Terminate(MyProcess selectedProcess)
         {
             selectedProcess.Process.Kill();
+        }
+
+        public void OpenModules(MyProcess selectedProcess)
+        {
+            ModulesWindow modules = new ModulesWindow(selectedProcess);
+            modules.Show();
         }
     }
 }

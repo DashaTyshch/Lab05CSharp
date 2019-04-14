@@ -20,6 +20,8 @@ namespace Lab05_Tyshchenko.ViewModels
         private CancellationTokenSource _tokenSource;
         private bool _isControlEnabled;
 
+        private ICommand _openModules;
+        private ICommand _openThreads;
         private ICommand _openFolder;
         private ICommand _terminate;
         #endregion
@@ -123,6 +125,33 @@ namespace Lab05_Tyshchenko.ViewModels
         private void TerminateExecute(object obj)
         {
             Model.Terminate(SelectedProcess);
+        }
+
+        public ICommand OpenModules
+        {
+            get
+            {
+                if (_openModules == null)
+                {
+                    _openModules = new RelayCommand<object>(OpenModulesExecute, OpenModulesCanExecute);
+                }
+                return _openModules;
+            }
+            set
+            {
+                _openModules = value;
+                InvokePropertyChanged(nameof(OpenModules));
+            }
+        }
+
+        private bool OpenModulesCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void OpenModulesExecute(object obj)
+        {
+            Model.OpenModules(SelectedProcess);
         }
         #endregion
 

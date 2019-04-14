@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Lab05_Tyshchenko.Models
 {
-    class MyProcess : INotifyPropertyChanged
+    public class MyProcess : INotifyPropertyChanged
     {
         #region Private Fields
         //private readonly Process _process;
