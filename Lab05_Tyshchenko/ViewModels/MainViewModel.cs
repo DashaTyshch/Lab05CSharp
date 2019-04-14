@@ -153,6 +153,33 @@ namespace Lab05_Tyshchenko.ViewModels
         {
             Model.OpenModules(SelectedProcess);
         }
+
+        public ICommand OpenThreads
+        {
+            get
+            {
+                if (_openThreads == null)
+                {
+                    _openThreads = new RelayCommand<object>(OpenThreadsExecute, OpenThreadsCanExecute);
+                }
+                return _openThreads;
+            }
+            set
+            {
+                _openThreads = value;
+                InvokePropertyChanged(nameof(OpenThreads));
+            }
+        }
+
+        private bool OpenThreadsCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void OpenThreadsExecute(object obj)
+        {
+            Model.OpenThreads(SelectedProcess);
+        }
         #endregion
 
         #region Private methods
@@ -178,10 +205,10 @@ namespace Lab05_Tyshchenko.ViewModels
 
                 IsControlEnabled = false;
 
-                var t = Process.GetProcesses().Select(p => p.Id).ToList();
+                var all = Process.GetProcesses().Select(p => p.Id).ToList();
                 var currentProcesses = Processes.Select(p => p.ID).ToList();
-                var newProcesses = t.Except(currentProcesses).ToList();
-                var processesToRemove = currentProcesses.Except(t).ToList();
+                var newProcesses = all.Except(currentProcesses).ToList();
+                var redundantProcesses = currentProcesses.Except(all).ToList();
 
                 foreach (int id in newProcesses)
                 {
@@ -196,7 +223,7 @@ namespace Lab05_Tyshchenko.ViewModels
                     {
                     }
                 }
-                foreach (int id in processesToRemove)
+                foreach (int id in redundantProcesses)
                 {
                     try
                     {

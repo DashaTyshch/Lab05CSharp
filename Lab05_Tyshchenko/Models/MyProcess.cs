@@ -9,12 +9,6 @@ namespace Lab05_Tyshchenko.Models
     public class MyProcess : INotifyPropertyChanged
     {
         #region Private Fields
-        //private readonly Process _process;
-        //private readonly string _name;
-        //private readonly int _id;
-        //private readonly string _user;
-        //private readonly string _folder;
-        //private readonly DateTime _launchDateTime;
         private bool _isActive;
         private double _cpu;
         private double _memory;
@@ -131,12 +125,11 @@ namespace Lab05_Tyshchenko.Models
                     var cpu = new PerformanceCounter("Process", "% Processor Time", Process.ProcessName, true);
                     var ram = new PerformanceCounter("Process", "Private Bytes", Process.ProcessName, true);
 
-                    // Getting first initial values
                     cpu.NextValue();
                     ram.NextValue();
-                    // If system has multiple cores, that should be taken into account
+
                     CPU = Math.Round(cpu.NextValue() / Environment.ProcessorCount, 2);
-                    // Returns number of MB consumed by application
+
                     Memory = Math.Round(ram.NextValue() / 1024 / 1024, 2);
                     IsActive = Process.Responding;
                     ThreadsCount = Process.Threads.Count;

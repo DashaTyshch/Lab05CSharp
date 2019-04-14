@@ -29,7 +29,6 @@ namespace Lab05_Tyshchenko
                 if (MessageBox.Show("Вийти?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     StationManager.InvokeStopThreads();
-                    a.Cancel = false;
                     Environment.Exit(0);
                 }
                 else

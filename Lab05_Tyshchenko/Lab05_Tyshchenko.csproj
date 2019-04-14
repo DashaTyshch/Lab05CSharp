@@ -63,6 +63,7 @@
     <Compile Include="Tools\StationManager.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModulesViewModel.cs" />
+    <Compile Include="ViewModels\ThreadsViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -76,6 +77,9 @@
     <Compile Include="Windows\ModulesWindow.xaml.cs">
       <DependentUpon>ModulesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ThreadsWindow.xaml.cs">
+      <DependentUpon>ThreadsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ModulesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ThreadsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

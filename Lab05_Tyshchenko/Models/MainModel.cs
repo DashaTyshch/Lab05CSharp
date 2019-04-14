@@ -1,5 +1,4 @@
 ﻿using Lab05_Tyshchenko.Windows;
-using System;
 using System.Diagnostics;
 
 namespace Lab05_Tyshchenko.Models
@@ -20,6 +19,12 @@ namespace Lab05_Tyshchenko.Models
         {
             ModulesWindow modules = new ModulesWindow(selectedProcess);
             modules.Show();
+        }
+
+        public void OpenThreads(MyProcess selectedProcess)
+        {
+            ThreadsWindow threads = new ThreadsWindow(selectedProcess);
+            threads.Show();
         }
     }
 }
